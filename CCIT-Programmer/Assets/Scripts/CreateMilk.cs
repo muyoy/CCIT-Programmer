@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CreateMilk : MonoBehaviour
 {
-
     public GameObject milk_prefab;
     public float power;
 
