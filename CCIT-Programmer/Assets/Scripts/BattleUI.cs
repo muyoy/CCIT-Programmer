@@ -1,30 +1,31 @@
-﻿using System.Collections;
+﻿using System.CodeDom.Compiler;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BattleUI : MonoBehaviour
 {
+    public Color impossibleColor;
+    public Color possibleColor;
+    public GameObject judgementBox;
     public string towerDirectoryPath = null;
     public GameObject installationTower = null;
-    
+    public GameObject parentGrid = null;
+    public GameObject[] deckObjs = new GameObject[5];
+
     #region 임시 변수
     //데이터베이스에서 덱 정보 가져와야함
-    public string[] deck = new string[5]{"COW", "GIRAFFE", "ELEPHANT", "LION", "BIRD"};
+    public string[] deck = new string[5]{"Cow", "Giraffe", "Elephant", "Lion", "Bird"};
     #endregion
 
-    void Start()
+    private void Start()
     {
-        string a = aaa();
-        if(a != null)
+        judgementBox = Resources.Load("JudgementBox") as GameObject;
+        for(int i = 0; i < deck.Length; i++)
         {
-
+            deckObjs[i] = Resources.Load(towerDirectoryPath  + deck[i]) as GameObject;
         }
-    }
-
-    string aaa()
-    {
-        return null;
     }
 
     void Update()
@@ -35,22 +36,22 @@ public class BattleUI : MonoBehaviour
             RaycastHit hit = new RaycastHit();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray.origin, ray.direction, out hit))
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000.0f))
             {
-                if(hit.transform.name == "Grid")
+                if (hit.transform.childCount != 0 || hit.transform.tag == "Tower") return;
+
+                if(hit.transform.name == "Grid" )
                 {
-                    installationTower.transform.position = hit.transform.position + new Vector3(0f, 3.5f, 0f);
+                    installationTower.transform.position = hit.transform.position + new Vector3(0f, 3.0f, 0f);
+                    parentGrid = hit.transform.gameObject;
+                }
+                else if(hit.transform.gameObject != installationTower)
+                {
+                    installationTower.transform.position = hit.point;
+                    parentGrid = null;
                 }
             }
         }
-
-#if UNITY_EDITOR
-        Debug.Log("정처리기");
-#elif UNITY_ANDROID
-        Debug.Log("정처리기");
-#elif UNITY_IOS
-        Debug.Log("정처리기");
-#endif
     }
 
     public void Button_InstallationTowerSelection(int index)
@@ -61,10 +62,24 @@ public class BattleUI : MonoBehaviour
             Destroy(installationTower);
             installationTower = null;
         }
-        string towerPrefabPath = towerDirectoryPath + deck[index];
-        Debug.Log(towerPrefabPath);
-        GameObject obj = Resources.Load(towerPrefabPath) as GameObject;
-        installationTower = Instantiate(obj);
 
+        installationTower = Instantiate(deckObjs[index]);
+    }
+
+    public void Button_ReleaseTowerSelection()
+    {
+        if(parentGrid != null)
+        {
+            installationTower.transform.SetParent(parentGrid.transform);
+            //생성 이펙트 넣기
+
+            installationTower = null;
+            parentGrid = null;
+        }
+        else
+        {
+            Destroy(installationTower);
+            installationTower = null;
+        }
     }
 }
