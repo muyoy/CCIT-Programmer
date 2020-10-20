@@ -4233,6 +4233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa00c4558df56834bb3360c15dcc25cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  line_start:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!4 &1764862194
 Transform:
   m_ObjectHideFlags: 0
