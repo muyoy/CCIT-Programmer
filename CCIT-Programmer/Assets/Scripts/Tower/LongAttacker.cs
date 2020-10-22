@@ -30,6 +30,9 @@ public class LongAttacker : Attacker
         Vector3 direction = transform.TransformDirection(Vector3.forward);
         obj.GetComponent<Rigidbody>().AddForce(direction * speed * 100.0f, ForceMode.Force);
 
+
+        Destroy(obj, 5.0f);
+
     }
 
 

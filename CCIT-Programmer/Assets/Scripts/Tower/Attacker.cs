@@ -24,7 +24,7 @@ public class Attacker : Tower
     //Stats
     private int atk = 10;
     [SerializeField] protected int atkRange = 1;
-    protected float atkCooltime = 1.0f;
+    [SerializeField] protected float atkCooltime = 1.0f;
 
     #endregion
 
