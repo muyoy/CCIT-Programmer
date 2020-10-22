@@ -8,19 +8,25 @@ using TMPro;
 
 public class UICreateTowerButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
+    //버튼 상태에 따른 이미지
     public Sprite normalImage;
     public Sprite hoverImage;
     public Sprite clickImage;
 
+    //마우스 다운시와 업시 이벤트
     public UnityEvent mouseDownEvent;
     public UnityEvent mouseReleaseEvent;
 
+    //쿨타임 이미지 컴포넌트
     private Image coolTimeImage;
+    //버튼 이미지 컴포넌트
     private Image image;
-    bool isEnter = false;
-    bool isDown = false;
+    
+    //버튼 상태
+    private bool isEnter = false;
+    private bool isDown = false;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         //coolTimeImage = transform.Find("CoolTimeImage").GetComponent<Image>();
@@ -36,6 +42,7 @@ public class UICreateTowerButton : MonoBehaviour, IPointerDownHandler, IPointerE
 
     }
 
+    //마우스 클릭시
     public void OnPointerDown(PointerEventData eventData)
     {
         isDown = true;
@@ -43,6 +50,7 @@ public class UICreateTowerButton : MonoBehaviour, IPointerDownHandler, IPointerE
         mouseDownEvent.Invoke();
     }
 
+    //마우스 클릭 종료시
     public void OnPointerUp(PointerEventData eventData)
     {
         isDown = false;
@@ -56,14 +64,18 @@ public class UICreateTowerButton : MonoBehaviour, IPointerDownHandler, IPointerE
         }
 
         mouseReleaseEvent.Invoke();
+
+        string a;
     }
 
+    //마우스 호버 시작
     public void OnPointerEnter(PointerEventData eventData)
     {
         isEnter = true;
         image.sprite = hoverImage;
     }
 
+    //마우스 호버 종료
     public void OnPointerExit(PointerEventData eventData)
     {
         isEnter = false;
