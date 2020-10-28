@@ -73,13 +73,13 @@
     <Compile Include="Assets\KUBIKOS-Animated Cube Mini Animals 2\Animals2_!Demo\Animals2_Scripts\MathFx.cs" />
     <Compile Include="Assets\KUBIKOS-Animated Cube Mini Animals 2\Animals2_!Demo\Animals2_Scripts\PreviewManager.cs" />
     <Compile Include="Assets\PositionOrderer\PositionOrderer.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\Tower\Attacker.cs" />
     <Compile Include="Assets\Scripts\Tower\Defender.cs" />
     <Compile Include="Assets\Scripts\Tower\LongAttacker.cs" />
     <Compile Include="Assets\Scripts\Tower\Productor.cs" />
     <Compile Include="Assets\Scripts\Tower\ShortAttacker.cs" />
     <Compile Include="Assets\Scripts\Tower\Tower.cs" />
+    <Compile Include="Assets\Scripts\Utility\Projectile.cs" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\PlaneWater_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Ice_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Vertical Fog.shader" />
@@ -95,6 +95,7 @@
     <None Include="Assets\KUBIKOS - World\Shaders\PlaneLava_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\PlaneWater_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Water_Shader.shader" />
+    <None Include="Assets\Shader\Outline.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Magma_Shader.shader" />
     <None Include="Assets\KUBIKOS - Cube Mini Animals\ReadMe.txt" />
     <None Include="Assets\KUBIKOS - Monsters\Shaders\Unlit-DoubleSided.shader" />
@@ -107,6 +108,7 @@
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Water_Shader.shader" />
     <None Include="Assets\KUBIKOS - Cube Mini Animals\Animals1_Shaders\Unlit-DoubleSided.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Lava_Shader.shader" />
+    <None Include="Assets\Shader\Outline_Only.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Cloud_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Surface_Shader.shader" />
     <Reference Include="UnityEngine">

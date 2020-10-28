@@ -63,17 +63,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4705095182324649052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfba4bb34de16f14cb81d3efddddb548, type: 3}
+  m_Script: {fileID: 11500000, guid: fff28fb807fb21849adc99967ad84ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 20
   hp: 0
   lineNum: 0
   isDead: 0
-  originOffset: 0.5
+  originOffset: 0.35
+  atkRange: 1
+  atkCooltime: 1
+  testObj: {fileID: 0}
   projectile: {fileID: 0}
   speed: 2
-  testTarget: {fileID: 0}
 --- !u!65 &5438230718923960945
 BoxCollider:
   m_ObjectHideFlags: 0
