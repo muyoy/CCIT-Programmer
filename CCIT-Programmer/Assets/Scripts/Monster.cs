@@ -1,7 +1,8 @@
-﻿/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
-/////////////////////////////////////////////////// EDITOR : 김한결                   ///////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////// Script : Monster Parent Script    ///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+﻿///
+/// EDITOR : Kim han gyul
+/// Script : Monster Parent Script
+/// Last EDITED : 2020-10-28
+///
 
 
 using System;
@@ -76,7 +77,7 @@ public class Monster : MonoBehaviour
 
     protected void OnTriggerEnter(Collider other) // 몬스터가 타워와 부딫혔을 때
     {
-        if (other.gameObject.tag.Equals("Tower"))
+        if (other.gameObject.CompareTag("Tower"))
         {
             StopCoroutine(WalkingForward()); // 몬스터 움직임 정지
             WalkingCoroutine = null;
@@ -138,6 +139,16 @@ public class Monster : MonoBehaviour
             }
 
             yield return null;
+        }
+    }
+
+    protected IEnumerator DistanceCheck()
+    {
+        while (isBlocked)
+        {
+
+            yield return new WaitForFixedUpdate();
+
         }
     }
 
