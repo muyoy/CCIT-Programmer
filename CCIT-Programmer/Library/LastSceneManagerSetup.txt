@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/SampleScene.unity
+- path: Assets/Scenes/20201021_Map_Proto.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
