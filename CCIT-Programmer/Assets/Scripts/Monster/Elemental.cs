@@ -9,13 +9,14 @@ public class Elemental : Monster
         base.Start();
     }
 
-    protected override void Init()
+    protected override void Init(int line)
     {
-        hp = 250f;
+        hp = 450f;
         damage = 35f;
-        speed = 1.3f;
-        attackRange = 1f;
+        speed = 1.5f;
+        //attackRange = 1f;
         attackDelay = 1.3f;
+        lineNumber = line;
 
         isBlocked = false;
         firstTower = null; // Tower GameObject Init

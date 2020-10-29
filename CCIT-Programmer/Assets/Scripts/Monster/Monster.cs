@@ -17,6 +17,11 @@ using UnityEngine;
 
 public class Monster : Character
 {
+    /* 배틀매니저 게임 오브젝트 */
+    GameObject BMGameObject;
+    /* 배틀매니저 스크립트 컴포넌트 */
+   // BattleManager battleManager;
+
     #region Monster_Status
     [SerializeField]
     protected float hp;
@@ -67,7 +72,8 @@ public class Monster : Character
     public override float HP
     {
         get { return hp; }
-        set { 
+        set
+        {
             hp = value;
             HpCheck();
         }
@@ -87,6 +93,9 @@ public class Monster : Character
         deadID = Animator.StringToHash("Dead");
         hpID = Animator.StringToHash("HP"); // HP에 따라 조정
 
+
+   //     battleManager = BMGameObject.GetComponent<BattleManager>();
+
         injuredHP = hp * 0.7f;
         moribundHP = hp * 0.3f;
 
@@ -105,10 +114,12 @@ public class Monster : Character
     {
         hp = 180f;
         damage = 30f;
-        speed = 2f;
-        attackRange = 1f;
+        speed = 1f;
+        //attackRange = 1f;
         attackDelay = 0.8f;
+
         lineNumber = line;
+
         isBlocked = false;
         firstTower = null; // Tower GameObject Init
 
@@ -117,8 +128,11 @@ public class Monster : Character
 
     public override void HpChanged(float _damage)
     {
-        hp -= _damage;
-        HP = hp;
+        if (!isDead)
+        {
+            hp -= _damage;
+            HP = hp;
+        }
     }
 
     public void WalkMonster()
@@ -148,15 +162,19 @@ public class Monster : Character
         {
             animator.SetFloat(hpID, MONSTER_STATE_INJURED);
         }
-        else if(hp>0 && hp<moribundHP)
+        else if (hp > 0 && hp < moribundHP)
         {
             animator.SetFloat(hpID, MONSTER_STATE_MORIBUND);
-        }else if (hp <= 0)
+        }
+        else if (hp <= 0)
         {
             StopCoroutine(WalkingCoroutine);
             WalkingCoroutine = null;
             animator.SetTrigger(deadID);
             isDead = true;
+
+            // 배틀 매니저에게 몬스터가 죽으면 플래그 세우기 
+      //      battleManager.MonsterDead(lineNumber);
         }
     }
 
@@ -199,7 +217,7 @@ public class Monster : Character
                 monsterAnimation.Play();
                 if (towerInfo.HP <= 0)
                 {
-                    if(WalkingCoroutine == null)
+                    if (WalkingCoroutine == null)
                     {
                         WalkingCoroutine = StartCoroutine(WalkingForward());
                     }
@@ -218,6 +236,6 @@ public class Monster : Character
         }
     }
 
-    
+
 }
 
