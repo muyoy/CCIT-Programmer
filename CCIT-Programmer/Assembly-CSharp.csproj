@@ -63,13 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\KUBIKOS - Monsters\!Demo\Scripts\AssetsObject.cs" />
-    <Compile Include="Assets\KUBIKOS - Monsters\!Demo\Scripts\MathFx.cs" />
-    <Compile Include="Assets\KUBIKOS - Monsters\!Demo\Scripts\PreviewManager.cs" />
     <Compile Include="Assets\KUBIKOS - World\Scripts\EnableCameraDepthInForward.cs" />
-    <Compile Include="Assets\Scripts\Monster.cs" />
-    <Compile Include="Assets\Scripts\OldZombie.cs" />
-    <Compile Include="Assets\Scripts\Zombie.cs" />
+    <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\Monster\Elemental.cs" />
+    <Compile Include="Assets\Scripts\Monster\Monster.cs" />
+    <Compile Include="Assets\Scripts\Monster\OldZombie.cs" />
+    <Compile Include="Assets\Scripts\Monster\Zombie.cs" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\PlaneWater_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Ice_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Vertical Fog.shader" />
@@ -85,6 +84,7 @@
     <None Include="Assets\KUBIKOS - World\Shaders\PlaneWater_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Water_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Magma_Shader.shader" />
+    <None Include="Assets\KUBIKOS - Cube Mini Animals\ReadMe.txt" />
     <None Include="Assets\KUBIKOS - Monsters\Shaders\Unlit-DoubleSided.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\CustomStandardSpecular.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Lava_Shader.shader" />
@@ -92,6 +92,7 @@
     <None Include="Assets\KUBIKOS - World\Shaders\Fog_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\CustomStandardSpecular.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Water_Shader.shader" />
+    <None Include="Assets\KUBIKOS - Cube Mini Animals\Animals1_Shaders\Unlit-DoubleSided.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Lava_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Cloud_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\URP Support\Shaders URP\Surface_Shader.shader" />
