@@ -29,9 +29,18 @@ public class BattleUI : MonoBehaviour
     public string[] deck = new string[5]{"Cow", "Giraffe", "Elephant", "Lion", "Bird"};
     #endregion
 
+    public BattleManager battleManager;
+    public ParticleSystem particleSystem_CreateTower;
+
+    public Image[] createButtones;
+
+    //public Text
+
     private void Start()
     {
         LayerMask_Ground = 1 << LayerMask.NameToLayer("Ground");
+        judgementBox.layer = 31;
+        particleSystem_CreateTower.gameObject.layer = 31;
 
         //judgementBox = Instantiate(Resources.Load("JudgementBox") as GameObject, judgementBoxInitPos, Quaternion.identity);
 
@@ -67,17 +76,18 @@ public class BattleUI : MonoBehaviour
 
                     if(hit.transform.childCount != 0)
                     {
-                        //그리드에 타워존재하지 않을 경우
+                        //그리드에 타워가 존재할 때
                         judgementBox.layer = 0;
+                        judgementBox.transform.position = hit.transform.position + new Vector3(0f, 3.0f, 0f);
                         judgementBox.GetComponent<Renderer>().material.color = impossibleColor;
                         parentGrid = null;
                     }
                     else
                     {
-                        //그리드에 타워가 존재할 때
+                        //그리드에 타워존재하지 않을 경우
                         judgementBox.layer = 31;
                         //judgementBox.transform.position = judgementBoxInitPos;
-                        judgementBox.GetComponent<Renderer>().material.color = possibleColor; 
+                        //judgementBox.GetComponent<Renderer>().material.color = possibleColor; 
                         parentGrid = hit.transform.gameObject;
                     }
                 }
@@ -101,14 +111,16 @@ public class BattleUI : MonoBehaviour
     //드래그 종료시 설치 가능 여부에 따라 설치 또는 삭제
     public void Button_ReleaseTowerSelection()
     {
-        judgementBox.transform.position = judgementBoxInitPos;
-        if(parentGrid != null)
+        judgementBox.layer = 31;
+        if (parentGrid != null)
         {
             //타워 설치 가능할 경우
             installationTower.transform.SetParent(parentGrid.transform);
             //생성 이펙트 넣기
-
-            //installationTower.GetComponent<Collider>().enabled = true;
+            particleSystem_CreateTower.transform.position = parentGrid.transform.position + new Vector3(0.0f, 3.5f, 0.0f);
+            particleSystem_CreateTower.gameObject.layer = 0;
+            particleSystem_CreateTower.Play();
+            //StartCoroutine(installationTower.GetComponent<Tower>().Start_On(battleManager.Tower_Line_Check(installationTower)));
 
             installationTower = null;
             parentGrid = null;
@@ -119,5 +131,22 @@ public class BattleUI : MonoBehaviour
             Destroy(installationTower);
             installationTower = null;
         }
+    }
+
+    private IEnumerator CO_CoolDown(Image coolTimeImage, float coolTime)
+    {
+        GetComponent<Collider>().enabled = false;
+        float time = 0.0f;
+        coolTimeImage.fillAmount = 1.0f;
+
+        while (coolTime >= time)
+        {
+            time += Time.deltaTime;
+            coolTimeImage.fillAmount = (coolTime - time) / coolTime;
+            yield return null;
+        }
+
+        coolTimeImage.fillAmount = 0.0f;
+        GetComponent<Collider>().enabled = true;
     }
 }

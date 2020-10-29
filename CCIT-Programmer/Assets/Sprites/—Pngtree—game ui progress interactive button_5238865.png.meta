@@ -1,0 +1,392 @@
+fileFormatVersion: 2
+guid: ec430dd8e9a6afc4394f41845c4016a8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -282951294681652090
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_0"
+  - first:
+      213: -3476383899847582228
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_1"
+  - first:
+      213: -9090205802090160433
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_2"
+  - first:
+      213: -69444124830722663
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_3"
+  - first:
+      213: -2464457088815925472
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_4"
+  - first:
+      213: 7447237508690023221
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_5"
+  - first:
+      213: -9037650731784274158
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_6"
+  - first:
+      213: 7588104991541244972
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_7"
+  - first:
+      213: 7551214209377497646
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_8"
+  - first:
+      213: -3012720143017301200
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_9"
+  - first:
+      213: 1643252149179927881
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_10"
+  - first:
+      213: 6370587260466954657
+    second: "\u2014Pngtree\u2014game ui progress interactive button_5238865_11"
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_0"
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 823
+        width: 406
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68463cfeb41c21cf0800000000000000
+      internalID: -282951294681652090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_1"
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 784
+        width: 165
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced92b2034761cfc0800000000000000
+      internalID: -3476383899847582228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_2"
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 784
+        width: 164
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce98372cf919d180800000000000000
+      internalID: -9090205802090160433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_3"
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 584
+        width: 362
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9951ab7bfe8490ff0800000000000000
+      internalID: -69444124830722663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_4"
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 586
+        width: 164
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 027fee0c55d7ccdd0800000000000000
+      internalID: -2464457088815925472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_5"
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 601
+        width: 164
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5331f679e07e95760800000000000000
+      internalID: 7447237508690023221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_6"
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 379
+        width: 617
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ff2fffa80d39280800000000000000
+      internalID: -9037650731784274158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_7"
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 379
+        width: 145
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c243f2b494d5e4960800000000000000
+      internalID: 7588104991541244972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_8"
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 205
+        width: 617
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e22f3dcb05d4bc860800000000000000
+      internalID: 7551214209377497646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_9"
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 206
+        width: 145
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03b2ac3fdfaa036d0800000000000000
+      internalID: -3012720143017301200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_10"
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 38
+        width: 112
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94d44449f110ec610800000000000000
+      internalID: 1643252149179927881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game ui progress interactive button_5238865_11"
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 43
+        width: 56
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a103ce4c5fd86850800000000000000
+      internalID: 6370587260466954657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 8ad445edaa0b7514687ef92a88ceadd4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
