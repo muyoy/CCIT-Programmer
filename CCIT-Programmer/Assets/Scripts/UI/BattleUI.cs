@@ -22,16 +22,22 @@ public class BattleUI : MonoBehaviour
     //덱에 있는 타워 프리펩
     public GameObject[] deckObjs = new GameObject[5];
 
+    private RaycastHit hit = new RaycastHit();
+    private int LayerMask_Ground;
     #region 임시 변수
     //데이터베이스에서 덱 정보 가져와야함
-    public string[] deck = new string[5]{"Cow", "Giraffe", "Elephant", "Lion", "Bird"};
+    public string[] deck = new string[5]{"Cow", "Giraffe", "Turtle", "Lion", "Bird"};
     #endregion
+
+    public BattleManager battleManager;
 
     private void Start()
     {
-        judgementBox = Instantiate(Resources.Load("JudgementBox") as GameObject, judgementBoxInitPos, Quaternion.identity);
+        LayerMask_Ground = 1 << LayerMask.NameToLayer("Ground");
 
-        for(int i = 0; i < deck.Length; i++)
+        //judgementBox = Instantiate(Resources.Load("JudgementBox") as GameObject, judgementBoxInitPos, Quaternion.identity);
+
+        for (int i = 0; i < deck.Length; i++)
         {
             deckObjs[i] = Resources.Load(towerDirectoryPath  + deck[i]) as GameObject;
            // deckObjs[i].GetComponent<Collider>().enabled = false;
@@ -43,17 +49,16 @@ public class BattleUI : MonoBehaviour
         //타워를 선택했다면 레이캐스트로 그리드 선택하여 생성
         if(installationTower != null)
         {
-            RaycastHit hit = new RaycastHit();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //Ground layer만 캐스트
-            int layerMask = 1 << LayerMask.NameToLayer("Ground");
 
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000.0f, layerMask))
+            //Ground layer만 캐스트
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000.0f, LayerMask_Ground))
             {
-                if(hit.transform.name != "Grid")
+                if(!hit.transform.CompareTag("Grid"))
                 {
                     //그리드가 아닐 경우
-                    judgementBox.transform.position = judgementBoxInitPos;
+                    judgementBox.layer = 31;
+                    //judgementBox.transform.position = judgementBoxInitPos;
                     installationTower.transform.position = hit.point;
                     parentGrid = null;
                 }
@@ -61,20 +66,20 @@ public class BattleUI : MonoBehaviour
                 {
                     //그리드일 경우
                     installationTower.transform.position = hit.transform.position + new Vector3(0f, 3.0f, 0f);
-                    //judgementBox.transform.position = hit.transform.position + new Vector3(0f, 3.0f, 0f);
 
                     if(hit.transform.childCount != 0)
                     {
                         //그리드에 타워존재하지 않을 경우
-                        judgementBox.transform.position = hit.transform.position + new Vector3(0f, 3.0f, 0f);
+                        judgementBox.layer = 0;
                         judgementBox.GetComponent<Renderer>().material.color = impossibleColor;
                         parentGrid = null;
                     }
                     else
                     {
                         //그리드에 타워가 존재할 때
-                        judgementBox.transform.position = judgementBoxInitPos;
-                        judgementBox.GetComponent<Renderer>().material.color = possibleColor;
+                        judgementBox.layer = 31;
+                        //judgementBox.transform.position = judgementBoxInitPos;
+                        judgementBox.GetComponent<Renderer>().material.color = possibleColor; 
                         parentGrid = hit.transform.gameObject;
                     }
                 }
@@ -103,14 +108,10 @@ public class BattleUI : MonoBehaviour
         {
             //타워 설치 가능할 경우
             installationTower.transform.SetParent(parentGrid.transform);
-            StartCoroutine(installationTower.GetComponent<Tower>().Start_On(2));
             //생성 이펙트 넣기
 
-            //Grid 이름으로 판단하던거 태그로 판단해서 줌
-            //TODO : Connect BattlManager - 그리드 이름 숫자 순서로 바꾼거 (x,y)로 바꿔서 보내기, 좌상단을 (0,0)으로 함
-
-
             //installationTower.GetComponent<Collider>().enabled = true;
+            StartCoroutine(installationTower.GetComponent<Tower>().Start_On(battleManager.Tower_Line_Check(installationTower)));
 
             installationTower = null;
             parentGrid = null;

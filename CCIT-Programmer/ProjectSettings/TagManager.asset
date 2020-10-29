@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grid
+  - BattleManager
+  - Monster
+  - Tower
   layers:
   - Default
   - TransparentFX
@@ -37,7 +40,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Hide
   m_SortingLayers:
   - name: Default
     uniqueID: 0

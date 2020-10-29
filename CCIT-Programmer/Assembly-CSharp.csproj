@@ -74,6 +74,10 @@
     <Compile Include="Assets\KUBIKOS-Animated Cube Mini Animals 2\Animals2_!Demo\Animals2_Scripts\PreviewManager.cs" />
     <Compile Include="Assets\PositionOrderer\PositionOrderer.cs" />
     <Compile Include="Assets\Scripts\BattleManager.cs" />
+    <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\Monster\Monster.cs" />
+    <Compile Include="Assets\Scripts\Monster\OldZombie.cs" />
+    <Compile Include="Assets\Scripts\Monster\Zombie.cs" />
     <Compile Include="Assets\Scripts\Tower\Attacker.cs" />
     <Compile Include="Assets\Scripts\Tower\Defender.cs" />
     <Compile Include="Assets\Scripts\Tower\LongAttacker.cs" />

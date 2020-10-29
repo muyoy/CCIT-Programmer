@@ -23,8 +23,8 @@ public class UICreateTowerButton : MonoBehaviour, IPointerDownHandler, IPointerE
     private Image image;
     
     //버튼 상태
-    bool isEnter = false;
-    bool isDown = false;
+    private bool isEnter = false;
+    private bool isDown = false;
 
     
     void Start()
@@ -64,6 +64,8 @@ public class UICreateTowerButton : MonoBehaviour, IPointerDownHandler, IPointerE
         }
 
         mouseReleaseEvent.Invoke();
+
+        string a;
     }
 
     //마우스 호버 시작

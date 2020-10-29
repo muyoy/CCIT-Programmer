@@ -19,7 +19,7 @@ public class Attacker : Tower
     private float nodeSize = 3.0f;
     private bool inAttackRange = false;
     protected GameObject targetObj = null;
-
+    private BattleManager battlemanager;
 
     //Stats
     private int atk = 10;
@@ -31,6 +31,7 @@ public class Attacker : Tower
     protected override void Awake()
     {
         type = Type.Attacker;
+        battlemanager = GameObject.FindGameObjectWithTag("BattleManager").GetComponent<BattleManager>();
     }
 
     protected override void Work()
@@ -43,20 +44,11 @@ public class Attacker : Tower
     {
     }
 
-    //지울것
-    #region 배틀매니저함수 임시용
-    public GameObject testObj = null;
-    private GameObject SetTargetMonster(int line)
-    {
-        return testObj;
-    }
-    #endregion
-
     private IEnumerator CheckMonster()
     {
         while(!isDead)
         {
-            targetObj = SetTargetMonster(lineNum);
+            targetObj = battlemanager.SetTargetMonster(lineNum);
             inAttackRange = false;
 
 
