@@ -2,7 +2,7 @@
 /// EDITOR : Kim han gyul
 /// Script : Monster Parent Script
 /// Created : 2020 - 10 - ..
-/// Last EDITED : 2020-10-28
+/// Last EDITED : 2020-10-29
 ///
 
 
@@ -17,6 +17,11 @@ using UnityEngine;
 
 public class Monster : Character
 {
+    /* 배틀매니저 게임 오브젝트 */
+    BattleManager BMGameObject;
+    /* 배틀매니저 스크립트 컴포넌트 */
+    // BattleManager battleManager;
+
     #region Monster_Status
     [SerializeField]
     protected float hp;
@@ -47,14 +52,15 @@ public class Monster : Character
     protected const float MONSTER_STATE_MORIBUND = 2;
     #endregion Animator Property
     protected float distance; // 타워와 좀비 사이의 거리
-    protected const float MONSTER_ATTACK_REACH = 1f;
+    protected const float MONSTER_ATTACK_REACH = 3f;
     protected float injuredHP;
     protected float moribundHP;
     #endregion Monster Property
 
     #region Tower Property
     protected GameObject firstTower;
-    protected Character towerInfo;
+    protected Tower towerInfo;
+    protected GameObject tower;
     #endregion Tower Property
 
     #region Coroutines
@@ -67,7 +73,8 @@ public class Monster : Character
     public override float HP
     {
         get { return hp; }
-        set { 
+        set
+        {
             hp = value;
             HpCheck();
         }
@@ -87,26 +94,30 @@ public class Monster : Character
         deadID = Animator.StringToHash("Dead");
         hpID = Animator.StringToHash("HP"); // HP에 따라 조정
 
+        BMGameObject = GameObject.FindGameObjectWithTag("BattleManager").GetComponent<BattleManager>();
+
         injuredHP = hp * 0.7f;
         moribundHP = hp * 0.3f;
 
     }
 
-    public IEnumerator Start_On()
+    public IEnumerator Start_On(int line)
     {
-        Init();
+        Init(line);
         WalkMonster();// Test
 
         yield return null;
     }
 
-    protected virtual void Init()
+    protected virtual void Init(int line)
     {
         hp = 180f;
         damage = 30f;
-        speed = 2f;
-        attackRange = 1f;
+        speed = 1f;
+        //attackRange = 1f;
         attackDelay = 0.8f;
+
+        lineNumber = line;
 
         isBlocked = false;
         firstTower = null; // Tower GameObject Init
@@ -116,8 +127,11 @@ public class Monster : Character
 
     public override void HpChanged(float _damage)
     {
-        hp -= _damage;
-        HP = hp;
+        if (!isDead)
+        {
+            hp -= _damage;
+            HP = hp;
+        }
     }
 
     public void WalkMonster()
@@ -128,7 +142,8 @@ public class Monster : Character
 
     public IEnumerator WalkingForward() // 몬스터가 앞으로 전진
     {
-        animator.SetTrigger(walkID);
+        //animator.SetTrigger(walkID);
+        animator.SetTrigger("Walk");
         while (!isBlocked)
         {
             monsterRb.position += Vector3.back * speed * Time.deltaTime;
@@ -141,48 +156,66 @@ public class Monster : Character
     {
         if (hp >= injuredHP)
         {
-            animator.SetFloat(hpID, MONSTER_STATE_NORMAL);
+            //animator.SetFloat(hpID, MONSTER_STATE_NORMAL);
+            animator.SetFloat("HP", MONSTER_STATE_NORMAL);
         }
         else if (hp < injuredHP && hp >= moribundHP)
         {
-            animator.SetFloat(hpID, MONSTER_STATE_INJURED);
+            //animator.SetFloat(hpID, MONSTER_STATE_INJURED);
+            animator.SetFloat("HP", MONSTER_STATE_INJURED);
         }
-        else if(hp>0 && hp<moribundHP)
+        else if (hp > 0 && hp < moribundHP)
         {
-            animator.SetFloat(hpID, MONSTER_STATE_MORIBUND);
-        }else if (hp <= 0)
+            //animator.SetFloat(hpID, MONSTER_STATE_MORIBUND);
+            animator.SetFloat("HP", MONSTER_STATE_MORIBUND);
+        }
+        else if (hp <= 0)
         {
             StopCoroutine(WalkingCoroutine);
             WalkingCoroutine = null;
-            animator.SetTrigger(deadID);
+            //animator.SetTrigger(deadID);
+            animator.SetTrigger("Dead");
             isDead = true;
+
+            // 배틀 매니저에게 몬스터가 죽으면 플래그 세우기 
+            BMGameObject.MonsterDead(lineNumber);
         }
     }
 
-    protected IEnumerator DistanceCheck(Collider other)
+    protected IEnumerator DistanceCheck()
     {
         do // 타워에 의해 몬스터가 길이 막혀있는 동안
         {
-            if (firstTower == null)
+            try
             {
-                firstTower = other.gameObject;
-            }
+                if (firstTower == null)
+                {
+                    firstTower = tower;
+                }
 
-            distance = Vector3.Distance(gameObject.transform.position, firstTower.transform.position); // Monster 와 Tower의 거리 계산
-            if (distance <= MONSTER_ATTACK_REACH)
+                distance = Vector3.Distance(gameObject.transform.position, firstTower.transform.position); // Monster 와 Tower의 거리 계산
+                if (distance <= MONSTER_ATTACK_REACH)
+                {
+                    isBlocked = true;
+                    StopCoroutine(WalkingCoroutine);
+                    WalkingCoroutine = null;
+                    StartCoroutine(Attack());
+                    yield break;
+                }
+                else
+                {
+                    isBlocked = false; // 계속 전진
+                    if (WalkingCoroutine == null)
+                    {
+                        WalkingCoroutine = StartCoroutine(WalkingForward());
+                    }
+                }
+                
+            }catch(NullReferenceException ex)
             {
-                isBlocked = true;
-                StopCoroutine(WalkingCoroutine);
-                WalkingCoroutine = null;
-                StartCoroutine(Attack());
-                yield break;
+                Console.WriteLine("Distance Check Reference null : " + ex.Message);
             }
-            else
-            {
-                isBlocked = false; // 계속 전진
-            }
-
-            yield return new WaitForFixedUpdate();
+            yield return null;
 
         } while (isBlocked);
     }
@@ -191,29 +224,43 @@ public class Monster : Character
     {
         do
         {
-            animator.SetTrigger(attackID);
-            animatorClipInfo = animator.GetCurrentAnimatorClipInfo(0);
-            if (animatorClipInfo[0].weight == 1)
+            try
             {
-                monsterAnimation.Play();
-                if (towerInfo.HP <= 0)
+                animator.SetTrigger(attackID);
+                animatorClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+                if (animatorClipInfo[0].weight >= 1)
                 {
-                    if(WalkingCoroutine == null)
+                    animator.Play("Attack");
+                    if (towerInfo.Hp <= 0)
                     {
-                        WalkingCoroutine = StartCoroutine(WalkingForward());
+                        if (WalkingCoroutine == null)
+                        {
+                            WalkingCoroutine = StartCoroutine(WalkingForward());
+                        }
+                        yield break;
                     }
-                    yield break;
                 }
+            }catch(NullReferenceException ex)
+            {
+                Console.WriteLine("Attack Reference null : " + ex.Message);
             }
+
+            yield return null;
         } while (true);
+    }
+
+    protected void Hit()
+    {
+        towerInfo.HpChange((int)damage);
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Tower"))
+        if (other.gameObject.CompareTag("Tower"))
         {
-            towerInfo = other.GetComponent<Character>();
-            DistanceCheckCoroutine = StartCoroutine(DistanceCheck(other));
+            towerInfo = other.GetComponent<Tower>();
+            tower = other.gameObject;
+            DistanceCheckCoroutine = StartCoroutine(DistanceCheck());
         }
     }
 

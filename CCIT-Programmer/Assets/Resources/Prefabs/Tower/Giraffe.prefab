@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5438230718923960945}
   m_Layer: 0
   m_Name: Giraffe
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,9 +71,9 @@ MonoBehaviour:
   lineNum: 0
   isDead: 0
   originOffset: 0.35
+  startingPos: {x: 0, y: 0, z: 0}
   atkRange: 1
   atkCooltime: 1
-  testObj: {fileID: 0}
   projectile: {fileID: 3559277880112786190, guid: 24ab16ba757f4a94a99e7f3543527afc,
     type: 3}
   speed: 2

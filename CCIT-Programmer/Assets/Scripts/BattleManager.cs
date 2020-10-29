@@ -28,6 +28,8 @@ public class BattleManager : MonoBehaviour
     public GameObject[] current_monster = new GameObject[3];
     private Coroutine wave = null;
     private Character chara;
+    public BattleUI battleui;
+
     #region Dictionary, Queue
     Dictionary<int, Queue<GameObject>> monster_dic = new Dictionary<int, Queue<GameObject>>();
 
@@ -54,7 +56,7 @@ public class BattleManager : MonoBehaviour
         }
         current_monster[0] = Resources.Load("Monster/Zombie_1", typeof(GameObject)) as GameObject;
         current_monster[1] = Resources.Load("Monster/Zombie_2", typeof(GameObject)) as GameObject;
-        current_monster[2] = Resources.Load("Elemental", typeof(GameObject)) as GameObject;
+        current_monster[2] = Resources.Load("Monster/Elemental", typeof(GameObject)) as GameObject;
         monster_hash = current_monster[0].tag.GetHashCode();
         monster_dic.Add(0, monsters_0);
         monster_dic.Add(1, monsters_1);
@@ -80,6 +82,7 @@ public class BattleManager : MonoBehaviour
 
         default_type = 0.0f;
         defaultUp_type = 0.0f;
+        battleui = GetComponent<BattleUI>();
         //Debug.Log(gameObject.tag.GetHashCode());
     }
 
@@ -125,7 +128,7 @@ public class BattleManager : MonoBehaviour
         {
             _monster.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
         }
-        StartCoroutine(_monster.GetComponent<Monster>().Start_On());
+        StartCoroutine(_monster.GetComponent<Monster>().Start_On(line));
         monster_dic[line].Enqueue(_monster);
     }
 
@@ -136,6 +139,7 @@ public class BattleManager : MonoBehaviour
         monster_dic[monster_line].Dequeue();
         wave_Dead++;
         Total_Dead++;
+        battleui.SetRoundProgress(monster_max, Total_Dead);
         if (Total_Dead == monster_max)
         {
             Debug.Log("Win");

@@ -18,14 +18,13 @@ public class UICreateTowerButton : MonoBehaviour, IPointerDownHandler, IPointerE
     public UnityEvent mouseReleaseEvent;
 
     //쿨타임 이미지 컴포넌트
-    private Image coolTimeImage;
+    public Image coolTimeImage;
     //버튼 이미지 컴포넌트
     private Image image;
     
     //버튼 상태
     private bool isEnter = false;
     private bool isDown = false;
-
     
     void Start()
     {
@@ -64,8 +63,6 @@ public class UICreateTowerButton : MonoBehaviour, IPointerDownHandler, IPointerE
         }
 
         mouseReleaseEvent.Invoke();
-
-        string a;
     }
 
     //마우스 호버 시작

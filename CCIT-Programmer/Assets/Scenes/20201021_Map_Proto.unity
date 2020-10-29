@@ -122,9 +122,9 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &214239349 stripped
+--- !u!4 &214397596 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1943954123067979204, guid: d9221dea35bb9224983a6c31cff8bb48,
+  m_CorrespondingSourceObject: {fileID: 495196258789288618, guid: d9221dea35bb9224983a6c31cff8bb48,
     type: 3}
   m_PrefabInstance: {fileID: 703002508}
   m_PrefabAsset: {fileID: 0}
@@ -210,6 +210,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1172196781}
     m_Modifications:
+    - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 2094468290}
+    - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: towerDirectoryPath
+      value: Prefabs/Tower/
+      objectReference: {fileID: 0}
+    - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: judgementBox
+      value: 
+      objectReference: {fileID: 518764593}
+    - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: battleManager
+      value: 
+      objectReference: {fileID: 1873049851}
+    - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: deckObjs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3080051768151993983, guid: 2cf550db76f8e2a49b5ba419fe3c47d7,
+        type: 3}
+    - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: deckObjs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4705095182324649052, guid: 5685aa4ade058d14c93721caab70e5bc,
+        type: 3}
+    - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: deckObjs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4826550044603014301, guid: ba11c3ede1c610d46979a2368a3e55b2,
+        type: 3}
+    - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: temp_MilkCount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 495196259042865127, guid: d9221dea35bb9224983a6c31cff8bb48,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1943954123067979204, guid: d9221dea35bb9224983a6c31cff8bb48,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -901,7 +949,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 214239349}
+  - {fileID: 214397596}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -976,6 +1024,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1845834913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
+    type: 3}
+  m_PrefabInstance: {fileID: 703002508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1c23d6049c1d541bea1ea88b95ee8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1873049849
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,7 +1049,7 @@ GameObject:
   - component: {fileID: 1873049852}
   m_Layer: 0
   m_Name: BattleManager
-  m_TagString: Monster
+  m_TagString: BattleManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1038,6 +1098,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  battleui: {fileID: 1845834913}
 --- !u!65 &1873049852
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1051,3 +1112,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15, y: 2, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2094468290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 495196259723589223, guid: d9221dea35bb9224983a6c31cff8bb48,
+    type: 3}
+  m_PrefabInstance: {fileID: 703002508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
