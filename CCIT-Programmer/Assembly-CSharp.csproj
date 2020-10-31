@@ -73,6 +73,7 @@
     <Compile Include="Assets\KUBIKOS-Animated Cube Mini Animals 2\Animals2_!Demo\Animals2_Scripts\MathFx.cs" />
     <Compile Include="Assets\KUBIKOS-Animated Cube Mini Animals 2\Animals2_!Demo\Animals2_Scripts\PreviewManager.cs" />
     <Compile Include="Assets\PositionOrderer\PositionOrderer.cs" />
+    <Compile Include="Assets\Scripts\Product.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\Tower\Attacker.cs" />
     <Compile Include="Assets\Scripts\Tower\Defender.cs" />

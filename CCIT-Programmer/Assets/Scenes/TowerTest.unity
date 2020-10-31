@@ -1572,6 +1572,7 @@ GameObject:
   - component: {fileID: 558729122}
   - component: {fileID: 558729121}
   - component: {fileID: 558729125}
+  - component: {fileID: 558729126}
   m_Layer: 9
   m_Name: Milk
   m_TagString: Untagged
@@ -1669,6 +1670,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &558729126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558729120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ba9628248e2f64a88fcc672cab2089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  isGet: 0
 --- !u!1 &559721260 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1141756196039588, guid: d7698c69246c64044ab2a94628bf0291,
