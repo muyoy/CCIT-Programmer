@@ -22,6 +22,7 @@ public class Attacker : Tower
     private BattleManager battlemanager;
 
     //Stats
+    [Header("Stats")]
     private int atk = 10;
     [SerializeField] protected int atkRange = 1;
     [SerializeField] protected float atkCooltime = 1.0f;
@@ -30,6 +31,7 @@ public class Attacker : Tower
 
     protected override void Awake()
     {
+        base.Awake();
         type = Type.Attacker;
         battlemanager = GameObject.FindGameObjectWithTag("BattleManager").GetComponent<BattleManager>();
     }
@@ -40,6 +42,17 @@ public class Attacker : Tower
 
         StartCoroutine(CheckMonster());
     }
+
+    //Animation Event Function
+    public virtual void AttackOn()
+    {
+        if(targetObj !=null)
+        {
+            Debug.Log("Tower Attack! " + atk);
+            targetObj.GetComponent<Character>().HpChanged(atk);
+        }
+    }
+
     protected virtual void Attack()
     {
     }
@@ -48,7 +61,7 @@ public class Attacker : Tower
     {
         while(!isDead)
         {
-            targetObj = battlemanager.SetTargetMonster(lineNum);
+            targetObj = battlemanager.SetTargetMonster(lineNumber);
             inAttackRange = false;
 
 
@@ -78,7 +91,7 @@ public class Attacker : Tower
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
-            HpChange(5);
+            HpChanged(5);
             Debug.Log("Test" + hp);
         }
     }

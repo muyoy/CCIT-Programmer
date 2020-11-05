@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tower_Gorilla
+  m_Controller: {fileID: 9100000, guid: a6f5bc9e977eb6644af98fc59b794489, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 967aa84a5950c1a42b06a1f4c78c54f8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4f8aad11bbeed0e498ac888b3b174a2e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 64dedc166f89a87479ede53c3d0b18b5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3d9e1468dade5e348aa9bbd09032cdab, type: 2}
+  - m_OriginalClip: {fileID: 7400002, guid: ecb900ca4b414eae9053afe2b45f3656, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: de705b64ccad5a5448d14597c91c2671, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d6753a776fa9815489c423bbc94f05ab, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5621d7ab83290d042a5be01518f07014, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c4909e4109db3ea4ba2a5ce216dc5358, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: de705b64ccad5a5448d14597c91c2671, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a5d48b7056a07f14984fef57cd344ae3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c5c9683e30532d64a9c6fa8eebc984ee, type: 2}

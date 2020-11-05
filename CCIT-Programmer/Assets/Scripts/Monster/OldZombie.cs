@@ -9,11 +9,6 @@ public class OldZombie : Monster
         base.Awake();
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     protected override void Init(int line)
     {
         base.Init(line);

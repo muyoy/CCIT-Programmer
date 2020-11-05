@@ -11,15 +11,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : Character
 {
     public enum Type {Productor, Attacker, Defender };
 
     //data
     protected Type type;
     [SerializeField] protected float maxHp = 20f;
-    [SerializeField] protected float hp;
-    public float Hp
+
+    public override float HP
     {
         get { return hp; }
         set
@@ -36,8 +36,6 @@ public class Tower : MonoBehaviour
     }
 
 
-    public int lineNum = 0;              //현재 설치된 라인번호
-    public bool isDead = false;
 
     [SerializeField] protected float originOffset = 0.35f;
     [SerializeField] protected Vector3 startingPos;
@@ -46,20 +44,20 @@ public class Tower : MonoBehaviour
 
     protected virtual void Awake()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     protected virtual void Start()
     {
         //나중에 지울것
         //BattleManager가 호출
-        //StartCoroutine(Start_On(2));
+        StartCoroutine(Start_On(2));
     }
 
 
-    public virtual float HpChange(int _damage)
+    public override void HpChanged(float _damage)
     {
-        return Hp -= _damage;
+        base.HpChanged(_damage);
     }
 
     /// <summary>
@@ -86,18 +84,20 @@ public class Tower : MonoBehaviour
         Debug.Log(transform.name + " is Dead");
     }
 
+   
+
     protected void SetAnimation(string _AnimTrigger)
     {
-        GetComponent<Animator>().SetTrigger(_AnimTrigger);
+        animator.SetTrigger(_AnimTrigger);
     }
     protected void SetAnimation(string _AnimBool,bool trueFalse)
     {
-        GetComponent<Animator>().SetBool(_AnimBool, trueFalse);
+        animator.SetBool(_AnimBool, trueFalse);
     }
 
     private void Init(int _lineNum)
     {
-        lineNum = _lineNum;
+        lineNumber = _lineNum;
         hp = maxHp;
         startingPos = transform.position + transform.TransformDirection(Vector3.up) * originOffset;
     }

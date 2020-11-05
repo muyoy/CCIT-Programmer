@@ -122,7 +122,8 @@ public class BattleManager : MonoBehaviour
     #region Monster_Instan
     public void SetMonsterLine(GameObject monster)
     {
-        int line = UnityEngine.Random.Range(0, 5);
+        //int line = UnityEngine.Random.Range(0, 5);
+        int line = 2;
         GameObject _monster = Instantiate(monster, line_start[line], Quaternion.Euler(0.0f, -180.0f, 0.0f));
         if(monster == current_monster[2])
         {

@@ -24,8 +24,6 @@ public class Monster : Character
 
     #region Monster_Status
     [SerializeField]
-    protected float hp;
-    [SerializeField]
     protected float damage;
     [SerializeField]
     protected float speed; // 몬스터 이동 속도
@@ -39,7 +37,7 @@ public class Monster : Character
     protected bool isBlocked; // 몬스터가 타워에 의해 길이 막혔는가?
     protected Rigidbody monsterRb;
     protected Animation monsterAnimation;
-    protected Animator animator;
+    
     #region Animator Property
     protected int idleID;
     protected int attackID;
@@ -70,24 +68,11 @@ public class Monster : Character
     Coroutine DistanceCheckCoroutine;
     #endregion
 
-    public override float HP
-    {
-        get { return hp; }
-        set
-        {
-            hp = value;
-            HpCheck();
-        }
-    }
-
     protected virtual void Awake()
     {
         monsterRb = gameObject.GetComponent<Rigidbody>();
         animator = gameObject.GetComponent<Animator>();
-    }
 
-    protected virtual void Start()
-    {
         idleID = Animator.StringToHash("Idle");
         walkID = Animator.StringToHash("Walk");
         attackID = Animator.StringToHash("Attack");
@@ -96,8 +81,8 @@ public class Monster : Character
 
         BMGameObject = GameObject.FindGameObjectWithTag("BattleManager").GetComponent<BattleManager>();
 
-        injuredHP = hp * 0.7f;
-        moribundHP = hp * 0.3f;
+        injuredHP = HP * 0.7f;
+        moribundHP = HP * 0.3f;
 
     }
 
@@ -109,9 +94,17 @@ public class Monster : Character
         yield return null;
     }
 
+    public override void HpChanged (float _damage){
+        if (!isDead)
+        {
+            HP -= _damage;
+            HpCheck();
+        }
+    }
+
     protected virtual void Init(int line)
     {
-        hp = 180f;
+        HP = 180f;
         damage = 30f;
         speed = 1f;
         //attackRange = 1f;
@@ -125,15 +118,6 @@ public class Monster : Character
         isDead = false;
     }
 
-    public override void HpChanged(float _damage)
-    {
-        if (!isDead)
-        {
-            hp -= _damage;
-            HP = hp;
-        }
-    }
-
     public void WalkMonster()
     {
         if (WalkingCoroutine == null)
@@ -143,7 +127,7 @@ public class Monster : Character
     public IEnumerator WalkingForward() // 몬스터가 앞으로 전진
     {
         //animator.SetTrigger(walkID);
-        animator.SetTrigger("Walk");
+        animator.SetTrigger(walkID);
         while (!isBlocked)
         {
             monsterRb.position += Vector3.back * speed * Time.deltaTime;
@@ -157,27 +141,27 @@ public class Monster : Character
         if (hp >= injuredHP)
         {
             //animator.SetFloat(hpID, MONSTER_STATE_NORMAL);
-            animator.SetFloat("HP", MONSTER_STATE_NORMAL);
+            animator.SetFloat(hpID, MONSTER_STATE_NORMAL);
         }
         else if (hp < injuredHP && hp >= moribundHP)
         {
             //animator.SetFloat(hpID, MONSTER_STATE_INJURED);
-            animator.SetFloat("HP", MONSTER_STATE_INJURED);
+            animator.SetFloat(hpID, MONSTER_STATE_INJURED);
         }
         else if (hp > 0 && hp < moribundHP)
         {
             //animator.SetFloat(hpID, MONSTER_STATE_MORIBUND);
-            animator.SetFloat("HP", MONSTER_STATE_MORIBUND);
+            animator.SetFloat(hpID, MONSTER_STATE_MORIBUND);
         }
         else if (hp <= 0)
         {
             StopCoroutine(WalkingCoroutine);
             WalkingCoroutine = null;
             //animator.SetTrigger(deadID);
-            animator.SetTrigger("Dead");
+            animator.SetTrigger(deadID);
             isDead = true;
 
-            // 배틀 매니저에게 몬스터가 죽으면 플래그 세우기 
+            // 배틀 매니저에게 몬스터가 죽으면 플래그 세우기
             BMGameObject.MonsterDead(lineNumber);
         }
     }
@@ -230,8 +214,8 @@ public class Monster : Character
                 animatorClipInfo = animator.GetCurrentAnimatorClipInfo(0);
                 if (animatorClipInfo[0].weight >= 1)
                 {
-                    animator.Play("Attack");
-                    if (towerInfo.Hp <= 0)
+                    animator.Play(attackID);
+                    if (towerInfo.HP <= 0)
                     {
                         if (WalkingCoroutine == null)
                         {
@@ -251,7 +235,7 @@ public class Monster : Character
 
     protected void Hit()
     {
-        towerInfo.HpChange((int)damage);
+        towerInfo.HpChanged((int)damage);
     }
 
     public void OnTriggerEnter(Collider other)

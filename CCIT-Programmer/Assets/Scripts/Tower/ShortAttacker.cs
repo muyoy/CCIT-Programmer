@@ -29,6 +29,7 @@ public class ShortAttacker : Attacker
 
     protected override void Attack()
     {
+        Debug.Log(gameObject.name +" Attack");
         SetAnimation("Attack");
 
     }

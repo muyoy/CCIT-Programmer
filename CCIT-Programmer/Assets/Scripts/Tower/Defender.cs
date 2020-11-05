@@ -16,7 +16,7 @@ using UnityEngine;
 public class Defender : Tower
 {
 
-    [SerializeField] protected float def = 5f;         //방어력
+    [SerializeField] protected float armorClass = 5f;         //방어도
 
     protected override void Awake()
     {
@@ -29,9 +29,9 @@ public class Defender : Tower
         base.Work();
     }
 
-    public override float HpChange(int _damage)
+    public override void HpChanged(float _damage)
     {
-        return Hp -= (_damage * def * 0.01f);
+        HP -= _damage * armorClass * 0.01f;
     }
 
 }
