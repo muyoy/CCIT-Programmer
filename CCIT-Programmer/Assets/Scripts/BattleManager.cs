@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    public int milk = 0;
     public int monster_count;
     public float monster_spawn_delay;
     public int wave_max;
-    public int monster_max;
+    public float monster_max;
 
-    private int Total_Dead;
-    public int wave_Dead;
+    private float Total_Dead = 0.0f;
+    public float wave_Dead;
 
     private float default_type = 0.0f, defaultUp_type = 0.0f;
     public int cur_wave_monster = 0;
@@ -20,16 +19,16 @@ public class BattleManager : MonoBehaviour
 
     private bool isWaveClear = true;
     private bool isRush = false;
-    private int monster_hash;
 
     public bool[,] tower_check_grid = new bool[5, 9];
     public int[,] tower_grid = new int[5, 9];
     public Vector3[] line_start = new Vector3[5];
+    public List<GameObject> tower = new List<GameObject>();
     public GameObject[] current_monster = new GameObject[3];
     private Coroutine wave = null;
-    private Character chara;
     public BattleUI battleui;
 
+    private const int monster_tag = -1139050900;
     #region Dictionary, Queue
     Dictionary<int, Queue<GameObject>> monster_dic = new Dictionary<int, Queue<GameObject>>();
 
@@ -57,7 +56,7 @@ public class BattleManager : MonoBehaviour
         current_monster[0] = Resources.Load("Monster/Zombie_1", typeof(GameObject)) as GameObject;
         current_monster[1] = Resources.Load("Monster/Zombie_2", typeof(GameObject)) as GameObject;
         current_monster[2] = Resources.Load("Monster/Elemental", typeof(GameObject)) as GameObject;
-        monster_hash = current_monster[0].tag.GetHashCode();
+
         monster_dic.Add(0, monsters_0);
         monster_dic.Add(1, monsters_1);
         monster_dic.Add(2, monsters_2);
@@ -82,8 +81,6 @@ public class BattleManager : MonoBehaviour
 
         default_type = 0.0f;
         defaultUp_type = 0.0f;
-        battleui = GetComponent<BattleUI>();
-        //Debug.Log(gameObject.tag.GetHashCode());
     }
 
     public int Tower_Line_Check(GameObject tower)
@@ -93,23 +90,37 @@ public class BattleManager : MonoBehaviour
         grid_num = int.Parse(tower.gameObject.transform.parent.name);
         x = grid_num / 9;
         z = grid_num % 9;
-
+        AddTower(tower);
         tower_check_grid[x, z] = true;
         return x;
     }
 
-    public void Grid(GameObject tower)
+    private void AddTower(GameObject _tower)
+    {
+        tower.Add(_tower);
+    }
+
+    private void Grid(GameObject _tower)
     {
         int grid_num;
         int x, z;
-        grid_num = int.Parse(tower.gameObject.transform.parent.name);
+        grid_num = int.Parse(_tower.gameObject.transform.parent.name);
         x = grid_num / 9;
         z = grid_num % 9;
 
         tower_check_grid[x, z] = false;
     }
+
+    public void RemoveTower(GameObject _tower)
+    {
+        Grid(_tower);
+        Destroy(_tower);
+        tower.Remove(_tower);
+    }
+
     private void Update()
     {
+
         if (isWaveClear)
             wave = StartCoroutine(Wave_Loop());
 
@@ -117,12 +128,27 @@ public class BattleManager : MonoBehaviour
         {
             Next_Wave();
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            MonsterDead(1);
+        }
+
+        for(int i =0; i < tower.Count; i++)
+        {
+            if(tower[i].GetComponent<Tower>().isDead == true)
+            {
+                RemoveTower(tower[i]);
+                break;
+            }
+        }
     }
 
     #region Monster_Instan
     public void SetMonsterLine(GameObject monster)
     {
-        int line = UnityEngine.Random.Range(0, 5);
+        //int line = UnityEngine.Random.Range(0, 5);
+        int line = 1; //test용
         GameObject _monster = Instantiate(monster, line_start[line], Quaternion.Euler(0.0f, -180.0f, 0.0f));
         if(monster == current_monster[2])
         {
@@ -137,9 +163,12 @@ public class BattleManager : MonoBehaviour
         GameObject deadmonster = monster_dic[monster_line].Peek();
         Destroy(deadmonster);
         monster_dic[monster_line].Dequeue();
+
         wave_Dead++;
         Total_Dead++;
+
         battleui.SetRoundProgress(monster_max, Total_Dead);
+
         if (Total_Dead == monster_max)
         {
             Debug.Log("Win");
@@ -254,7 +283,7 @@ public class BattleManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.GetHashCode().Equals(monster_hash))
+        if (other.tag.GetHashCode() == monster_tag)
         {
             Time.timeScale = 0;
             Debug.Log("Lose");

@@ -75,6 +75,7 @@
     <Compile Include="Assets\PositionOrderer\PositionOrderer.cs" />
     <Compile Include="Assets\Scripts\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\DBManager.cs" />
     <Compile Include="Assets\Scripts\Monster\Elemental.cs" />
     <Compile Include="Assets\Scripts\Monster\Monster.cs" />
     <Compile Include="Assets\Scripts\Monster\NewZombie.cs" />
@@ -102,6 +103,7 @@
     <None Include="Assets\KUBIKOS - World\Shaders\PlaneLava_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\PlaneWater_Shader.shader" />
     <None Include="Assets\KUBIKOS - World\Shaders\Water_Shader.shader" />
+    <None Include="Assets\StreamingAssets\TowerDB.txt" />
     <None Include="Assets\KUBIKOS - World\Shaders\Magma_Shader.shader" />
     <None Include="Assets\KUBIKOS - Cube Mini Animals\ReadMe.txt" />
     <None Include="Assets\KUBIKOS - Monsters\Shaders\Unlit-DoubleSided.shader" />

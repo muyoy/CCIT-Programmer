@@ -203,6 +203,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 418525843}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &662276124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 495196259042865127, guid: d9221dea35bb9224983a6c31cff8bb48,
+    type: 3}
+  m_PrefabInstance: {fileID: 703002508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &703002508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,7 +226,7 @@ PrefabInstance:
         type: 3}
       propertyPath: progressBar
       value: 
-      objectReference: {fileID: 2094468290}
+      objectReference: {fileID: 662276124}
     - target: {fileID: 495196258789288597, guid: d9221dea35bb9224983a6c31cff8bb48,
         type: 3}
       propertyPath: towerDirectoryPath
@@ -958,6 +970,101 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1641796874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1641796876}
+  - component: {fileID: 1641796875}
+  m_Layer: 0
+  m_Name: DBManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1641796875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641796874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aeda3c8267d4f84cb4eb2dbfd16355f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerDatas: []
+  myDeck:
+  - num: 0
+    name: 
+    type: 0
+    cost: 0
+    hp: 0
+    coolTime: 0
+    atkSpeed: 0
+    atk: 0
+    atkRange: 0
+    description: 
+  - num: 0
+    name: 
+    type: 0
+    cost: 0
+    hp: 0
+    coolTime: 0
+    atkSpeed: 0
+    atk: 0
+    atkRange: 0
+    description: 
+  - num: 0
+    name: 
+    type: 0
+    cost: 0
+    hp: 0
+    coolTime: 0
+    atkSpeed: 0
+    atk: 0
+    atkRange: 0
+    description: 
+  - num: 0
+    name: 
+    type: 0
+    cost: 0
+    hp: 0
+    coolTime: 0
+    atkSpeed: 0
+    atk: 0
+    atkRange: 0
+    description: 
+  - num: 0
+    name: 
+    type: 0
+    cost: 0
+    hp: 0
+    coolTime: 0
+    atkSpeed: 0
+    atk: 0
+    atkRange: 0
+    description: 
+--- !u!4 &1641796876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641796874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1727299970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,10 +1187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa00c4558df56834bb3360c15dcc25cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  milk: 0
   monster_count: 0
   monster_spawn_delay: 3
-  wave_max: 10
+  wave_max: 30
   monster_max: 0
   wave_Dead: 0
   cur_wave_monster: 0
@@ -1094,6 +1200,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
+  tower: []
   current_monster:
   - {fileID: 0}
   - {fileID: 0}
@@ -1112,15 +1219,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15, y: 2, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2094468290 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 495196259723589223, guid: d9221dea35bb9224983a6c31cff8bb48,
-    type: 3}
-  m_PrefabInstance: {fileID: 703002508}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

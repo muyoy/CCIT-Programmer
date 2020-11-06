@@ -9,15 +9,10 @@ public class NewZombie : Monster
         base.Awake();
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     protected override void Init(int line)
     {
         base.Init(line);
-        hp = 220f;
+        HP = 220f;
         damage = 30f;
         //attackRange = 1f;
         attackDelay = 0.8f;
