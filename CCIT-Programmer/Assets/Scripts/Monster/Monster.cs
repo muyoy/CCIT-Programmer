@@ -171,7 +171,7 @@ public class Monster : Character
         }
         else if (hp <= 0)
         {
-            StopCoroutine(WalkingCoroutine);
+            MonsterDead();
             WalkingCoroutine = null;
             //animator.SetTrigger(deadID);
             animator.SetTrigger("Dead");
@@ -210,8 +210,9 @@ public class Monster : Character
                         WalkingCoroutine = StartCoroutine(WalkingForward());
                     }
                 }
-                
-            }catch(NullReferenceException ex)
+
+            }
+            catch (NullReferenceException ex)
             {
                 Console.WriteLine("Distance Check Reference null : " + ex.Message);
             }
@@ -237,10 +238,13 @@ public class Monster : Character
                         {
                             WalkingCoroutine = StartCoroutine(WalkingForward());
                         }
+                        DistanceCheckCoroutine = null;
+
                         yield break;
                     }
                 }
-            }catch(NullReferenceException ex)
+            }
+            catch (NullReferenceException ex)
             {
                 Console.WriteLine("Attack Reference null : " + ex.Message);
             }
@@ -256,14 +260,21 @@ public class Monster : Character
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Tower"))
+        if (DistanceCheckCoroutine == null)
         {
-            towerInfo = other.GetComponent<Tower>();
-            tower = other.gameObject;
-            DistanceCheckCoroutine = StartCoroutine(DistanceCheck());
+            if (other.gameObject.CompareTag("Tower"))
+            {
+                towerInfo = other.GetComponent<Tower>();
+                tower = other.gameObject;
+                DistanceCheckCoroutine = StartCoroutine(DistanceCheck());
+            }
         }
+
     }
 
+    public void MonsterDead(){
+        StopAllCoroutines();
+    }
 
 }
 
